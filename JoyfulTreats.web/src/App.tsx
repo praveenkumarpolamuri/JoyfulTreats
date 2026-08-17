@@ -9,17 +9,21 @@ import IngredientsPage from "./pages/IngredientsPage";
 import AddIngredientPage from "./pages/AddIngredientPage";
 import SalesPage from "./pages/SalesPage";
 import SaveSalePage from "./pages/SaveSalePage";
+import SuppliersPage from "./pages/SuppliersPage";
+import PurchasesPage from "./pages/PurchasesPage";
 
 function App() {
   return (
     <>
       <nav>
-        <Link to="/">Dashboard</Link>{" "}
-        <Link to="/products">Products</Link>
-        <Link to="/recipes">Recipes</Link>
-        <Link to="/ingredients">Ingredients</Link>
-        <Link to="/sales">Sales</Link>
-      </nav>
+  <Link to="/">Dashboard</Link>{" "}
+  <Link to="/products">Products</Link>{" "}
+  <Link to="/recipes">Recipes</Link>{" "}
+  <Link to="/ingredients">Ingredients</Link>{" "}
+  <Link to="/sales">Sales</Link>{" "}
+  <Link to="/suppliers">Suppliers</Link>{" "}
+  <Link to="/purchases">Purchases</Link>
+</nav>
 
       <Routes>
         <Route path="/" element={<DashboardPage />} />
@@ -35,6 +39,10 @@ function App() {
         <Route path="/sales" element={<SalesPage />} />
         <Route path="/sales/new" element={<SaveSalePage />} />
         <Route path="/sales/:id/edit" element={<SaveSalePage />} />
+        <Route path="/suppliers" element={<SuppliersPage />} />
+        <Route path="/purchases" element={<PurchasesPage />} />
+
+
       </Routes>
     </>
   );

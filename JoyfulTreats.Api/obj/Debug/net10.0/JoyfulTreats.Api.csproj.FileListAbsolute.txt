@@ -129,3 +129,4 @@
 /Users/praveenkumar/Desktop/JoyfulTreats/JoyfulTreats.Api/bin/Debug/net10.0/Swashbuckle.AspNetCore.Swagger.dll
 /Users/praveenkumar/Desktop/JoyfulTreats/JoyfulTreats.Api/bin/Debug/net10.0/Swashbuckle.AspNetCore.SwaggerGen.dll
 /Users/praveenkumar/Desktop/JoyfulTreats/JoyfulTreats.Api/bin/Debug/net10.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+/Users/praveenkumar/Desktop/JoyfulTreats/JoyfulTreats.Api/obj/Debug/net10.0/JoyfulTreats.Api.sourcelink.json

@@ -8,6 +8,7 @@ using JoyfulTreats.Application.Services.Recipes;
 using JoyfulTreats.Application.Services.Sales;
 using JoyfulTreats.Application.Services.Suppliers;
 using JoyfulTreats.Application.Services.Inventory;
+using JoyfulTreats.Application.Services.Purchases;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,6 +33,7 @@ builder.Services.AddScoped<IRecipeService, RecipeService>();
 builder.Services.AddScoped<ISaleService, SaleService>();
 builder.Services.AddScoped<ISupplierService, SupplierService>();
 builder.Services.AddScoped<IInventoryService, InventoryService>();
+builder.Services.AddScoped<IPurchaseService, PurchaseService>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("JoyfulTreatsWeb", policy =>

@@ -61,8 +61,7 @@ function RecipesPage() {
               <th>Batch Cost</th>
               <th>Cost per Item</th>
               <th>Gross Profit</th>
-              <th>Margin %</th>
-              <th>Actions</th>
+          
             </tr>
           </thead>
           <tbody>
@@ -73,8 +72,7 @@ function RecipesPage() {
                 <td>{recipe.ingredients.length}</td>
                 <td>{currency.format(recipe.totalCost)}</td>
                 <td>{currency.format(recipe.costPerItem)}</td>
-                <td>{currency.format(recipe.grossProfit)}</td>
-                <td>{recipe.marginPercentage.toFixed(2)}%</td>
+               
                 <td>
                   <Link to={`/recipes/${recipe.id}/edit`}>Edit</Link>{" "}
                   <button onClick={() => handleDelete(recipe.id, recipe.productName)}>Delete</button>
