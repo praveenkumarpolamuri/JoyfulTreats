@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="JoyfulTreats.Api/JoyfulTreats.Api.csproj" />
+  <Project Path="JoyfulTreats.Application/JoyfulTreats.Application.csproj" />
+  <Project Path="JoyfulTreats.Domain/JoyfulTreats.Domain.csproj" />
+  <Project Path="JoyfulTreats.Infrastructure/JoyfulTreats.Infrastructure.csproj" />
+</Solution>

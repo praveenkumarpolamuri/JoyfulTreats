@@ -1,0 +1,15 @@
+/Users/praveenkumar/Desktop/JoyfulTreats/JoyfulTreats.Application/bin/Debug/net10.0/JoyfulTreats.Application.deps.json
+/Users/praveenkumar/Desktop/JoyfulTreats/JoyfulTreats.Application/bin/Debug/net10.0/JoyfulTreats.Application.dll
+/Users/praveenkumar/Desktop/JoyfulTreats/JoyfulTreats.Application/bin/Debug/net10.0/JoyfulTreats.Application.pdb
+/Users/praveenkumar/Desktop/JoyfulTreats/JoyfulTreats.Application/bin/Debug/net10.0/JoyfulTreats.Domain.dll
+/Users/praveenkumar/Desktop/JoyfulTreats/JoyfulTreats.Application/bin/Debug/net10.0/JoyfulTreats.Domain.pdb
+/Users/praveenkumar/Desktop/JoyfulTreats/JoyfulTreats.Application/obj/Debug/net10.0/JoyfulTreats.Application.csproj.AssemblyReference.cache
+/Users/praveenkumar/Desktop/JoyfulTreats/JoyfulTreats.Application/obj/Debug/net10.0/JoyfulTreats.Application.GeneratedMSBuildEditorConfig.editorconfig
+/Users/praveenkumar/Desktop/JoyfulTreats/JoyfulTreats.Application/obj/Debug/net10.0/JoyfulTreats.Application.AssemblyInfoInputs.cache
+/Users/praveenkumar/Desktop/JoyfulTreats/JoyfulTreats.Application/obj/Debug/net10.0/JoyfulTreats.Application.AssemblyInfo.cs
+/Users/praveenkumar/Desktop/JoyfulTreats/JoyfulTreats.Application/obj/Debug/net10.0/JoyfulTreats.Application.csproj.CoreCompileInputs.cache
+/Users/praveenkumar/Desktop/JoyfulTreats/JoyfulTreats.Application/obj/Debug/net10.0/JoyfulTr.1DC8692D.Up2Date
+/Users/praveenkumar/Desktop/JoyfulTreats/JoyfulTreats.Application/obj/Debug/net10.0/JoyfulTreats.Application.dll
+/Users/praveenkumar/Desktop/JoyfulTreats/JoyfulTreats.Application/obj/Debug/net10.0/refint/JoyfulTreats.Application.dll
+/Users/praveenkumar/Desktop/JoyfulTreats/JoyfulTreats.Application/obj/Debug/net10.0/JoyfulTreats.Application.pdb
+/Users/praveenkumar/Desktop/JoyfulTreats/JoyfulTreats.Application/obj/Debug/net10.0/ref/JoyfulTreats.Application.dll

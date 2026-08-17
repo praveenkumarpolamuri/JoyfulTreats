@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: joyfultreats-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: joyfultreats
+      POSTGRES_USER: joyfultreats
+      POSTGRES_PASSWORD: joyfultreats_dev
+    ports:
+      - "5432:5432"
+    volumes:
+      - joyfultreats-postgres-data:/var/lib/postgresql/data
+
+volumes:
+  joyfultreats-postgres-data:

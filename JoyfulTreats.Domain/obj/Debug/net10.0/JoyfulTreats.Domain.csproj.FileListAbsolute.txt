@@ -1,0 +1,11 @@
+/Users/praveenkumar/Desktop/JoyfulTreats/JoyfulTreats.Domain/bin/Debug/net10.0/JoyfulTreats.Domain.deps.json
+/Users/praveenkumar/Desktop/JoyfulTreats/JoyfulTreats.Domain/bin/Debug/net10.0/JoyfulTreats.Domain.dll
+/Users/praveenkumar/Desktop/JoyfulTreats/JoyfulTreats.Domain/bin/Debug/net10.0/JoyfulTreats.Domain.pdb
+/Users/praveenkumar/Desktop/JoyfulTreats/JoyfulTreats.Domain/obj/Debug/net10.0/JoyfulTreats.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/praveenkumar/Desktop/JoyfulTreats/JoyfulTreats.Domain/obj/Debug/net10.0/JoyfulTreats.Domain.AssemblyInfoInputs.cache
+/Users/praveenkumar/Desktop/JoyfulTreats/JoyfulTreats.Domain/obj/Debug/net10.0/JoyfulTreats.Domain.AssemblyInfo.cs
+/Users/praveenkumar/Desktop/JoyfulTreats/JoyfulTreats.Domain/obj/Debug/net10.0/JoyfulTreats.Domain.csproj.CoreCompileInputs.cache
+/Users/praveenkumar/Desktop/JoyfulTreats/JoyfulTreats.Domain/obj/Debug/net10.0/JoyfulTreats.Domain.dll
+/Users/praveenkumar/Desktop/JoyfulTreats/JoyfulTreats.Domain/obj/Debug/net10.0/refint/JoyfulTreats.Domain.dll
+/Users/praveenkumar/Desktop/JoyfulTreats/JoyfulTreats.Domain/obj/Debug/net10.0/JoyfulTreats.Domain.pdb
+/Users/praveenkumar/Desktop/JoyfulTreats/JoyfulTreats.Domain/obj/Debug/net10.0/ref/JoyfulTreats.Domain.dll
