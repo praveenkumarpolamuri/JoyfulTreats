@@ -52,6 +52,134 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 {
     base.OnModelCreating(modelBuilder);
 
+    modelBuilder.Entity<Ingredient>(entity =>
+    {
+        entity.HasIndex(e => e.Id);
+
+        entity.Property(e => e.Name)
+            .HasMaxLength(200)
+            .IsRequired();
+
+        entity.Property(e => e.Unit)
+            .HasMaxLength(30)
+            .IsRequired();
+
+        entity.Property(e => e.CostPerUnit)
+            .HasPrecision(12, 4);
+    });
+
+    modelBuilder.Entity<RecipeIngredient>(entity =>
+    {
+        entity.HasIndex(e => new { e.RecipeId, e.IngredientId })
+            .IsUnique();
+
+        entity.Property(e => e.Quantity)
+            .HasPrecision(12, 3);
+
+        entity.Property(e => e.Unit)
+            .IsRequired();
+
+        entity.HasOne(e => e.Recipe)
+            .WithMany(r => r.RecipeIngredients)
+            .HasForeignKey(e => e.RecipeId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        entity.HasOne(e => e.Ingredient)
+            .WithMany(i => i.RecipeIngredients)
+            .HasForeignKey(e => e.IngredientId)
+            .OnDelete(DeleteBehavior.Restrict);
+    });
+
+    modelBuilder.Entity<Sale>(entity =>
+    {
+        entity.HasIndex(e => new { e.SaleDate, e.ProductId });
+
+        entity.Property(e => e.Quantity)
+            .HasPrecision(12, 3);
+
+        entity.Property(e => e.UnitPrice)
+            .HasPrecision(12, 2);
+    });
+
+    modelBuilder.Entity<Purchase>(entity =>
+    {
+        entity.HasIndex(e => e.PurchaseDate);
+
+        entity.Property(e => e.TotalAmount)
+            .HasPrecision(14, 2);
+
+        entity.Property(e => e.Status)
+            .HasMaxLength(50)
+            .IsRequired();
+
+        entity.Property(e => e.InvoiceNumber)
+            .HasMaxLength(100);
+
+        entity.HasOne(e => e.Supplier)
+            .WithMany(s => s.Purchases)
+            .HasForeignKey(e => e.SupplierId)
+            .OnDelete(DeleteBehavior.Restrict);
+    });
+
+    modelBuilder.Entity<PurchaseItem>(entity =>
+    {
+        entity.HasIndex(e => e.IngredientId);
+
+        entity.Property(e => e.Quantity)
+            .HasPrecision(12, 3);
+
+        entity.Property(e => e.UnitCost)
+            .HasPrecision(12, 4);
+
+        entity.Property(e => e.TotalCost)
+            .HasPrecision(14, 2);
+
+        entity.HasOne(e => e.Ingredient)
+            .WithMany()
+            .HasForeignKey(e => e.IngredientId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        entity.HasOne(e => e.Purchase)
+            .WithMany(p => p.Items)
+            .HasForeignKey(e => e.PurchaseId)
+            .OnDelete(DeleteBehavior.Cascade);
+    });
+
+    modelBuilder.Entity<InventoryStock>(entity =>
+    {
+        entity.HasIndex(e => e.IngredientId)
+            .IsUnique();
+
+        entity.Property(e => e.Quantity)
+            .HasPrecision(12, 3);
+
+        entity.Property(e => e.ReorderLevel)
+            .HasPrecision(12, 3);
+
+        entity.HasOne(e => e.Ingredient)
+            .WithMany()
+            .HasForeignKey(e => e.IngredientId)
+            .OnDelete(DeleteBehavior.Restrict);
+    });
+
+    modelBuilder.Entity<InventoryTransaction>(entity =>
+    {
+        entity.HasIndex(e => new { e.IngredientId, e.CreatedAt });
+
+        entity.Property(e => e.Quantity)
+            .HasPrecision(12, 3);
+
+        entity.Property(e => e.TransactionType)
+            .HasMaxLength(50)
+            .IsRequired();
+
+        entity.HasOne(e => e.Ingredient)
+            .WithMany()
+            .HasForeignKey(e => e.IngredientId)
+            .OnDelete(DeleteBehavior.Restrict);
+    });
+
+    // Existing ProductInventory configuration
     modelBuilder.Entity<ProductStock>(entity =>
     {
         entity.HasKey(e => e.Id);
@@ -88,5 +216,4 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
             .OnDelete(DeleteBehavior.Restrict);
     });
 }
-
 }

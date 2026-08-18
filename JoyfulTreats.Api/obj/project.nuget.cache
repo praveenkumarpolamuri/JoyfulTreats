@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Z5eg0KwQLww=",
+  "dgSpecHash": "x0HGAQMS8hU=",
   "success": true,
-  "projectFilePath": "/Users/praveenkumar/Desktop/JoyfulTreats/joyfultreats.api/JoyfulTreats.Api.csproj",
+  "projectFilePath": "/Users/praveenkumar/Desktop/JoyfulTreats/JoyfulTreats.Api/JoyfulTreats.Api.csproj",
   "expectedPackageFiles": [
     "/Users/praveenkumar/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/praveenkumar/.nuget/packages/microsoft.aspnetcore.openapi/10.0.11/microsoft.aspnetcore.openapi.10.0.11.nupkg.sha512",

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/praveenkumar/Desktop/JoyfulTreats/joyfultreats.api/JoyfulTreats.Api.csproj": {}
+    "/Users/praveenkumar/Desktop/JoyfulTreats/JoyfulTreats.Api/JoyfulTreats.Api.csproj": {}
   },
   "projects": {
-    "/Users/praveenkumar/Desktop/JoyfulTreats/joyfultreats.api/JoyfulTreats.Api.csproj": {
+    "/Users/praveenkumar/Desktop/JoyfulTreats/JoyfulTreats.Api/JoyfulTreats.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/praveenkumar/Desktop/JoyfulTreats/joyfultreats.api/JoyfulTreats.Api.csproj",
+        "projectUniqueName": "/Users/praveenkumar/Desktop/JoyfulTreats/JoyfulTreats.Api/JoyfulTreats.Api.csproj",
         "projectName": "JoyfulTreats.Api",
-        "projectPath": "/Users/praveenkumar/Desktop/JoyfulTreats/joyfultreats.api/JoyfulTreats.Api.csproj",
+        "projectPath": "/Users/praveenkumar/Desktop/JoyfulTreats/JoyfulTreats.Api/JoyfulTreats.Api.csproj",
         "packagesPath": "/Users/praveenkumar/.nuget/packages/",
-        "outputPath": "/Users/praveenkumar/Desktop/JoyfulTreats/joyfultreats.api/obj/",
+        "outputPath": "/Users/praveenkumar/Desktop/JoyfulTreats/JoyfulTreats.Api/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/praveenkumar/.nuget/NuGet/NuGet.Config"

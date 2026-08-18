@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("JoyfulTreats.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1e89e4521c12183a2f3b2ff48196d70999e7a24d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b47852ed19e3aef40f5e174c25796a0637fd5497")]
 [assembly: System.Reflection.AssemblyProductAttribute("JoyfulTreats.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("JoyfulTreats.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
