@@ -1,21 +1,15 @@
-namespace JoyfulTreats.Domain.Entities;
-
+// Domain/Entities/Ingredient.cs
 public class Ingredient
 {
     public int Id { get; set; }
-
     public string Name { get; set; } = string.Empty;
+    public string Unit { get; set; } = string.Empty; // e.g., "g", "kg", "ml"
 
-    public string Unit { get; set; } = string.Empty;
-
-    public decimal CostPerUnit { get; set; }
-
-    public bool IsActive { get; set; } = true;
-
+    // Navigation property for historical prices
+    public ICollection<IngredientPriceHistory> PriceHistories { get; set; } 
+        = new List<IngredientPriceHistory>();
+    public bool IsActive { get; set; }
     public DateTime CreatedAt { get; set; }
-
-    public DateTime? UpdatedAt { get; set; }
-
-    public ICollection<RecipeIngredient> RecipeIngredients { get; set; }
-        = new List<RecipeIngredient>();
+    public DateTime UpdatedAt { get; set; }
 }
+

@@ -14,6 +14,7 @@ public class RecipeService(IApplicationDbContext context) : IRecipeService
             .Include(recipe => recipe.Product)
             .Include(recipe => recipe.RecipeIngredients)
                 .ThenInclude(recipeIngredient => recipeIngredient.Ingredient)
+                    .ThenInclude(ingredient => ingredient.PriceHistories) // Eager load active prices
             .OrderBy(recipe => recipe.Product.Name)
             .ToListAsync(cancellationToken);
 
@@ -26,6 +27,7 @@ public class RecipeService(IApplicationDbContext context) : IRecipeService
             .Include(recipe => recipe.Product)
             .Include(recipe => recipe.RecipeIngredients)
                 .ThenInclude(recipeIngredient => recipeIngredient.Ingredient)
+                    .ThenInclude(ingredient => ingredient.PriceHistories) // Eager load active prices
             .Where(recipe => recipe.Id == id)
             .FirstOrDefaultAsync(cancellationToken);
 
@@ -143,7 +145,14 @@ public class RecipeService(IApplicationDbContext context) : IRecipeService
 
     private static RecipeDto ToDto(Recipe recipe)
     {
-        var totalCost = recipe.RecipeIngredients.Sum(item => UnitConversion.CalculateCost(item.Quantity, item.Unit, item.Ingredient.CostPerUnit, item.Ingredient.Unit));
+        var totalCost = recipe.RecipeIngredients.Sum(item =>
+        {
+            var activeCost = item.Ingredient.PriceHistories
+                .FirstOrDefault(ph => ph.EffectiveTo == null)?.UnitCost ?? 0m;
+
+            return UnitConversion.CalculateCost(item.Quantity, item.Unit, activeCost, item.Ingredient.Unit);
+        });
+
         var costPerItem = recipe.YieldQuantity > 0 ? totalCost / recipe.YieldQuantity : 0;
         var grossProfit = recipe.Product.SellingPrice - costPerItem;
         var marginPercentage = recipe.Product.SellingPrice > 0 ? (grossProfit / recipe.Product.SellingPrice) * 100 : 0;
@@ -159,13 +168,19 @@ public class RecipeService(IApplicationDbContext context) : IRecipeService
             SellingPrice = recipe.Product.SellingPrice,
             GrossProfit = grossProfit,
             MarginPercentage = marginPercentage,
-            Ingredients = recipe.RecipeIngredients.Select(item => new RecipeIngredientDto
+            Ingredients = recipe.RecipeIngredients.Select(item =>
             {
-                IngredientId = item.IngredientId,
-                IngredientName = item.Ingredient.Name,
-                Unit = item.Unit,
-                Quantity = item.Quantity,
-                Cost = UnitConversion.CalculateCost(item.Quantity, item.Unit, item.Ingredient.CostPerUnit, item.Ingredient.Unit)
+                var activeCost = item.Ingredient.PriceHistories
+                    .FirstOrDefault(ph => ph.EffectiveTo == null)?.UnitCost ?? 0m;
+
+                return new RecipeIngredientDto
+                {
+                    IngredientId = item.IngredientId,
+                    IngredientName = item.Ingredient.Name,
+                    Unit = item.Unit,
+                    Quantity = item.Quantity,
+                    Cost = UnitConversion.CalculateCost(item.Quantity, item.Unit, activeCost, item.Ingredient.Unit)
+                };
             }).ToList()
         };
     }
