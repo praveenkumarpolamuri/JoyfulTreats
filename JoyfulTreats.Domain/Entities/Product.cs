@@ -23,4 +23,9 @@ public class Product
     public Category Category { get; set; } = null!;
 
     public Recipe? Recipe { get; set; }
+
+    public ProductStock? ProductStock { get; set; }
+
+public ICollection<ProductInventoryTransaction> InventoryTransactions { get; set; }
+    = new List<ProductInventoryTransaction>();
 }

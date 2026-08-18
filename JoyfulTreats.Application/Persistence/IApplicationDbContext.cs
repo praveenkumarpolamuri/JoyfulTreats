@@ -37,6 +37,9 @@ public interface IApplicationDbContext
 
     DbSet<Expense> Expenses { get; }
 
-    Task<int> SaveChangesAsync(
-        CancellationToken cancellationToken = default);
+    DbSet<ProductStock> ProductStocks {get;}
+
+    DbSet<ProductInventoryTransaction> ProductInventoryTransactions {get;}
+    
+    Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }

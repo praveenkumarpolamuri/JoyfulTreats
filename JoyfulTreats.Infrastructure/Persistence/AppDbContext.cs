@@ -43,120 +43,50 @@ public class AppDbContext : DbContext, IApplicationDbContext
 
     public DbSet<Expense> Expenses => Set<Expense>();
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    public DbSet<ProductStock> ProductStocks => Set<ProductStock>();
+
+public DbSet<ProductInventoryTransaction> ProductInventoryTransactions
+    => Set<ProductInventoryTransaction>();
+
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    base.OnModelCreating(modelBuilder);
+
+    modelBuilder.Entity<ProductStock>(entity =>
     {
-        base.OnModelCreating(modelBuilder);
+        entity.HasKey(e => e.Id);
 
-        modelBuilder.Entity<Ingredient>(entity =>
-        {
-            entity.Property(ingredient => ingredient.Name).HasMaxLength(200);
-            entity.Property(ingredient => ingredient.Unit).HasMaxLength(30);
-            entity.Property(ingredient => ingredient.CostPerUnit)
-                .HasPrecision(12, 4);
-        });
+        entity.HasIndex(e => e.ProductId)
+            .IsUnique();
 
-        modelBuilder.Entity<Recipe>(entity =>
-        {
-            entity.Property(recipe => recipe.YieldQuantity).HasPrecision(12, 3);
+        entity.Property(e => e.Quantity)
+            .HasPrecision(18, 3);
 
-            entity.HasOne(recipe => recipe.Product)
-                .WithOne(product => product.Recipe)
-                .HasForeignKey<Recipe>(recipe => recipe.ProductId)
-                .OnDelete(DeleteBehavior.Cascade);
-        });
+        entity.Property(e => e.ReorderLevel)
+            .HasPrecision(18, 3);
 
-        modelBuilder.Entity<RecipeIngredient>(entity =>
-        {
-            entity.Property(recipeIngredient => recipeIngredient.Quantity)
-                .HasPrecision(12, 3);
+        entity.HasOne(e => e.Product)
+            .WithOne(p => p.ProductStock)
+            .HasForeignKey<ProductStock>(e => e.ProductId)
+            .OnDelete(DeleteBehavior.Restrict);
+    });
 
-            entity.HasIndex(recipeIngredient => new
-            {
-                recipeIngredient.RecipeId,
-                recipeIngredient.IngredientId
-            }).IsUnique();
+    modelBuilder.Entity<ProductInventoryTransaction>(entity =>
+    {
+        entity.HasKey(e => e.Id);
 
-            entity.HasOne(recipeIngredient => recipeIngredient.Recipe)
-                .WithMany(recipe => recipe.RecipeIngredients)
-                .HasForeignKey(recipeIngredient => recipeIngredient.RecipeId)
-                .OnDelete(DeleteBehavior.Cascade);
+        entity.Property(e => e.Quantity)
+            .HasPrecision(18, 3);
 
-            entity.HasOne(recipeIngredient => recipeIngredient.Ingredient)
-                .WithMany(ingredient => ingredient.RecipeIngredients)
-                .HasForeignKey(recipeIngredient => recipeIngredient.IngredientId)
-                .OnDelete(DeleteBehavior.Restrict);
-        });
+        entity.Property(e => e.TransactionType)
+            .HasMaxLength(30)
+            .IsRequired();
 
-        modelBuilder.Entity<Sale>(entity =>
-        {
-            entity.Property(sale => sale.Quantity).HasPrecision(12, 3);
-            entity.Property(sale => sale.UnitPrice).HasPrecision(12, 2);
-            entity.HasIndex(sale => new { sale.SaleDate, sale.ProductId });
-        });
+        entity.HasOne(e => e.Product)
+            .WithMany(p => p.InventoryTransactions)
+            .HasForeignKey(e => e.ProductId)
+            .OnDelete(DeleteBehavior.Restrict);
+    });
+}
 
-        modelBuilder.Entity<Supplier>(entity =>
-        {
-            entity.Property(supplier => supplier.Name).HasMaxLength(255).IsRequired();
-            entity.Property(supplier => supplier.Phone).HasMaxLength(20);
-            entity.Property(supplier => supplier.Email).HasMaxLength(255);
-            entity.Property(supplier => supplier.Address).HasMaxLength(500);
-        });
-
-        modelBuilder.Entity<Purchase>(entity =>
-        {
-            entity.Property(purchase => purchase.TotalAmount).HasPrecision(14, 2);
-            entity.Property(purchase => purchase.Status).HasMaxLength(50).IsRequired();
-            entity.Property(purchase => purchase.InvoiceNumber).HasMaxLength(100);
-
-            entity.HasOne(purchase => purchase.Supplier)
-                .WithMany(supplier => supplier.Purchases)
-                .HasForeignKey(purchase => purchase.SupplierId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            entity.HasIndex(purchase => purchase.PurchaseDate);
-        });
-
-        modelBuilder.Entity<PurchaseItem>(entity =>
-        {
-            entity.Property(item => item.Quantity).HasPrecision(12, 3);
-            entity.Property(item => item.UnitCost).HasPrecision(12, 4);
-            entity.Property(item => item.TotalCost).HasPrecision(14, 2);
-
-            entity.HasOne(item => item.Purchase)
-                .WithMany(purchase => purchase.Items)
-                .HasForeignKey(item => item.PurchaseId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            entity.HasOne(item => item.Ingredient)
-                .WithMany()
-                .HasForeignKey(item => item.IngredientId)
-                .OnDelete(DeleteBehavior.Restrict);
-        });
-
-        modelBuilder.Entity<InventoryStock>(entity =>
-        {
-            entity.Property(stock => stock.Quantity).HasPrecision(12, 3);
-            entity.Property(stock => stock.ReorderLevel).HasPrecision(12, 3);
-
-            entity.HasOne(stock => stock.Ingredient)
-                .WithOne()
-                .HasForeignKey<InventoryStock>(stock => stock.IngredientId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            entity.HasIndex(stock => stock.IngredientId).IsUnique();
-        });
-
-        modelBuilder.Entity<InventoryTransaction>(entity =>
-        {
-            entity.Property(trans => trans.Quantity).HasPrecision(12, 3);
-            entity.Property(trans => trans.TransactionType).HasMaxLength(50).IsRequired();
-
-            entity.HasOne(trans => trans.Ingredient)
-                .WithMany()
-                .HasForeignKey(trans => trans.IngredientId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            entity.HasIndex(trans => new { trans.IngredientId, trans.CreatedAt });
-        });
-    }
 }
